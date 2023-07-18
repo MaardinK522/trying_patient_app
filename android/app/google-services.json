@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "242544521876",
+    "project_id": "patient-data-demo-server",
+    "storage_bucket": "patient-data-demo-server.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:242544521876:android:a0a40970b7399739e1ba81",
+        "android_client_info": {
+          "package_name": "com.mkproductions.phyzzicare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBx4dJ7wm2J70p1wJukM5lNs4qNZ-4fNSc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
