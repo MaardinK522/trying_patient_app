@@ -39,7 +39,7 @@ class _PrescriptionsHistoryWindowRouteState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

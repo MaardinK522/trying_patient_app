@@ -1,5 +1,6 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
+import 'package:phyzzicare/generated/assets.dart';
 
 class PrescriptionRouteListviewItem extends StatelessWidget {
   final int index;
@@ -37,9 +38,9 @@ class PrescriptionRouteListviewItem extends StatelessWidget {
         child: Container(
           margin: const EdgeInsets.symmetric(vertical: 10),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(5),
             border: Border.all(
-              color: Theme.of(context).colorScheme.secondary,
+              color: Theme.of(context).colorScheme.secondaryContainer,
               width: 2,
             ),
           ),
@@ -48,16 +49,15 @@ class PrescriptionRouteListviewItem extends StatelessWidget {
             child: Column(
               children: [
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        image: const DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage("assets/ghandi.jpeg"),
-                        ),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Image.asset(
+                        Assets.assetsGhandi,
+                        height: 50,
+                        width: 50,
+                        fit: BoxFit.cover,
                       ),
                     ),
                     const SizedBox(width: 10),
@@ -65,39 +65,27 @@ class PrescriptionRouteListviewItem extends StatelessWidget {
                       child: Text(
                         "Mahatma Ghandi",
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontSize: 20),
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                   ],
                 ),
-                Divider(
-                  thickness: 2,
-                  height: 20,
-                  color: Theme.of(context).colorScheme.secondaryContainer,
-                ),
                 Row(
                   children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          const Text(
-                            "Fever and cold",
-                            style: TextStyle(fontSize: 18),
-                          ),
-                          const SizedBox(height: 10),
-                          Text(
-                            getFakeDate(),
-                            style: const TextStyle(fontSize: 10),
-                          ),
-                        ],
+                    const Expanded(
+                      child: Text(
+                        "Fever and cold",
+                        style: TextStyle(fontSize: 18),
                       ),
                     ),
                     FilledButton.tonal(
                       style: ButtonStyle(
                         shape: MaterialStatePropertyAll(
                           RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(5),
                           ),
                         ),
                       ),

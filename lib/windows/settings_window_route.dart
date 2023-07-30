@@ -4,7 +4,7 @@ import 'package:phyzzicare/generated/assets.dart';
 import '../../main.dart';
 import '../../transitions/custom_fade_transition.dart';
 import '../../utils/theme_color.dart';
-import '../sign_up_page_route.dart';
+import '../routes/sign_up_page_route.dart';
 
 class SettingsWindowRoute extends StatefulWidget {
   const SettingsWindowRoute({super.key});
@@ -14,10 +14,10 @@ class SettingsWindowRoute extends StatefulWidget {
 }
 
 class _SettingsWindowRouteState extends State<SettingsWindowRoute> {
-  late String _selected = "Light";
+  String _selected = "Light";
   late List<MyThemeColor> themeColors;
   RoundedRectangleBorder listTileRoundness = RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(10),
+    borderRadius: BorderRadius.circular(5),
   );
 
   @override
@@ -53,7 +53,7 @@ class _SettingsWindowRouteState extends State<SettingsWindowRoute> {
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                   child: ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     child: Image.asset(
                       Assets.assetsGhandi,
                       fit: BoxFit.fill,
@@ -82,6 +82,13 @@ class _SettingsWindowRouteState extends State<SettingsWindowRoute> {
                       ),
                       const SizedBox(height: 10),
                       OutlinedButton(
+                        style: ButtonStyle(
+                          shape: MaterialStatePropertyAll(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
+                        ),
                         onPressed: () {},
                         child: const Row(
                           mainAxisSize: MainAxisSize.min,

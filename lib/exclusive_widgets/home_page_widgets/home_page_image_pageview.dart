@@ -14,7 +14,7 @@ class HomePageImagePageView extends StatefulWidget {
 class _HomePageImagePageViewState extends State<HomePageImagePageView> {
   final PageController imagesPageViewController = PageController(
     keepPage: true,
-    viewportFraction: 0.9,
+    viewportFraction: 1,
   );
 
   late Timer timer;
@@ -32,57 +32,44 @@ class _HomePageImagePageViewState extends State<HomePageImagePageView> {
 
   @override
   void dispose() {
+    imagesPageViewController.dispose();
     timer.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SizedBox(
-            height: 150,
-            child: PageView.builder(
-              controller: imagesPageViewController,
-              // physics: const NeverScrollableScrollPhysics(),
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 150,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: AssetImage(Assets.assetsGhandi),
-                        ),
-                      ),
-                    ),
-                  ],
-                );
-              },
-            ),
-          ),
-          const SizedBox(height: 10),
-          SmoothPageIndicator(
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.25,
+          child: PageView.builder(
             controller: imagesPageViewController,
-            count: 5,
-            effect: ScrollingDotsEffect(
-              activeDotScale: 1.5,
-              activeDotColor: Theme.of(context).colorScheme.secondary,
-              dotColor: Colors.grey,
-              // dotColor: Theme.of(context).colorScheme.tertiary,
-            ),
+            // physics: const NeverScrollableScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return Image.asset(
+                Assets.assetsGhandi,
+                fit: BoxFit.cover,
+              );
+            },
           ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 10),
+        SmoothPageIndicator(
+          controller: imagesPageViewController,
+          count: 5,
+          effect: ScrollingDotsEffect(
+            dotHeight: 10,
+            dotWidth: 10,
+            activeDotScale: 1.75,
+            activeDotColor: Theme.of(context).colorScheme.secondary,
+            dotColor: Colors.grey,
+            // dotColor: Theme.of(context).colorScheme.tertiary,
+          ),
+        ),
+      ],
     );
   }
 }

@@ -32,3 +32,5 @@ flutter:
   assets:
     - assets/
     - icons/
+    - lib/generated/
+    - lib/generated/assets.dart

@@ -31,52 +31,39 @@ class NewsListviewItem extends StatelessWidget {
       ),
       child: FadeTransition(
         opacity: animationController,
-        child: Card(
-          elevation: 5,
+        child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-          child: Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      width: 100,
-                      height: 70,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(4),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Image.asset(
+                    Assets.assetsTherapy,
+                    height: 70,
+                    width: 100,
+                    fit: BoxFit.cover,
+                  ),
+                  const SizedBox(width: 10),
+                  Flexible(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "${faker.date.time()} ${faker.company.person.name()}",
+                          style: const TextStyle(fontSize: 20),
+                          overflow: TextOverflow.fade,
                         ),
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage(
-                            Assets.assetsTherapy,
-                          ),
+                        Text(
+                          faker.address.buildingNumber(),
+                          style: const TextStyle(fontSize: 10),
+                          overflow: TextOverflow.ellipsis,
                         ),
-                      ),
+                      ],
                     ),
-                    const SizedBox(width: 10),
-                    Flexible(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "${faker.date.time()} ${faker.company.person.name()}",
-                            style: const TextStyle(fontSize: 20),
-                            overflow: TextOverflow.fade,
-                          ),
-                          Text(
-                            faker.address.buildingNumber(),
-                            style: const TextStyle(fontSize: 10),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),

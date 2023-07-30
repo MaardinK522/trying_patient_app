@@ -55,7 +55,7 @@ class _NewsWindowRouteState extends State<NewsWindowRoute>
         ChipsChoice<String>.multiple(
           choiceStyle: C2ChipStyle.outlined(
             borderWidth: 2,
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(5),
           ),
           alignment: WrapAlignment.start,
           value: selectedChips,
@@ -75,17 +75,14 @@ class _NewsWindowRouteState extends State<NewsWindowRoute>
             padding: const EdgeInsets.symmetric(vertical: 10),
             itemCount: 10,
             itemBuilder: (BuildContext context, int index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: NewsListviewItem(
-                  animationController: animationController,
-                  index: index ~/ 2,
-                ),
+              return NewsListviewItem(
+                animationController: animationController,
+                index: index ~/ 2,
               );
             },
             separatorBuilder: (BuildContext context, int index) => Divider(
               color: Theme.of(context).colorScheme.secondaryContainer,
-              thickness: 2,
+              thickness: 1,
             ),
           ),
         ),

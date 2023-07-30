@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:phyzzicare/routes/search_page_route.dart';
-import 'package:phyzzicare/routes/windows/call_history_window_route.dart';
-import 'package:phyzzicare/routes/windows/home_window_route.dart';
-import 'package:phyzzicare/routes/windows/news_window_route.dart';
-import 'package:phyzzicare/routes/windows/prescription_history_window_route.dart';
-import 'package:phyzzicare/routes/windows/settings_window_route.dart';
 import 'package:phyzzicare/transitions/custom_fade_transition.dart';
 import 'package:phyzzicare/utils/standard_vals.dart';
+
+import '../windows/call_history_window_route.dart';
+import '../windows/home_window_route.dart';
+import '../windows/news_window_route.dart';
+import '../windows/prescription_history_window_route.dart';
+import '../windows/settings_window_route.dart';
 
 class HomePageRoute extends StatefulWidget {
   const HomePageRoute({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class HomePageRoute extends StatefulWidget {
 
 class _HomePageRouteState extends State<HomePageRoute>
     with TickerProviderStateMixin {
-  late final List<Widget> _allWindowChildren = const [
+  final List<Widget> _allWindowChildren = const [
     CallHistoryWindowRoute(),
     PrescriptionsHistoryWindowRoute(),
     HomeWindowRoute(),
@@ -41,12 +42,6 @@ class _HomePageRouteState extends State<HomePageRoute>
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(10),
-            bottomLeft: Radius.circular(10),
-          ),
-        ),
         title: const Text("PhyzziCare!", style: TextStyle(fontSize: 25)),
         actions: [
           IconButton(
@@ -73,6 +68,7 @@ class _HomePageRouteState extends State<HomePageRoute>
         children: _allWindowChildren,
       ),
       bottomNavigationBar: BottomNavigationBar(
+        elevation: 0,
         onTap: (index) {
           setState(() {
             bottomNavigationItemIndex = index;
