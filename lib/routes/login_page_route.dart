@@ -12,7 +12,6 @@ class LoginPageRoute extends StatefulWidget {
 }
 
 class _LoginPageRouteState extends State<LoginPageRoute> {
-  // TextField controller
   final TextEditingController _emailTextEditingController =
       TextEditingController();
   final TextEditingController _phoneTextEditingController =
@@ -21,13 +20,13 @@ class _LoginPageRouteState extends State<LoginPageRoute> {
       TextEditingController();
 
   late OutlineInputBorder outlineInputBorder = OutlineInputBorder(
-    borderRadius: BorderRadius.circular(10),
+    borderRadius: BorderRadius.circular(5),
     borderSide:
         BorderSide(color: Theme.of(context).colorScheme.primaryContainer),
   );
   var buttonRoundness = ButtonStyle(
     shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(5),
     )),
   );
 

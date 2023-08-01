@@ -13,7 +13,7 @@ class SignupPageRoute extends StatefulWidget {
 class _SignupPageRouteState extends State<SignupPageRoute> {
   var buttonRoundness = ButtonStyle(
     shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(5),
     )),
   );
 

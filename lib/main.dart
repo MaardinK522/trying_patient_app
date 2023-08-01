@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:phyzzicare/routes/sign_up_page_route.dart';
+import 'package:phyzzicare/routes/login_page_route.dart';
 import 'package:phyzzicare/utils/theme_color.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -37,8 +37,6 @@ class MyAppState extends State<MyApp> {
   get appThemeMode => _appThemeMode;
 
   get seedColor => _seedColor;
-
-  final appFontFamilies = ["Roboto", "monospace"];
 
   setSavedSeedColor() {
     setState(() {
@@ -111,15 +109,12 @@ class MyAppState extends State<MyApp> {
         } else if (newSeedColor == Colors.blue) {
           color = "blue";
         }
-        debugPrint(color);
         saveSeedColor(color);
       },
     );
   }
 
   changeFontTheme(String? newAppFontTheme) {
-    debugPrint(
-        "Main.dart\n\tFont family: ${Theme.of(context).textTheme.bodySmall?.fontFamily}");
     setState(() {
       appFontFamily = newAppFontTheme;
     });
@@ -136,6 +131,7 @@ class MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Phyzzicare',
       theme: ThemeData(
         fontFamily: appFontFamily,
@@ -152,19 +148,17 @@ class MyAppState extends State<MyApp> {
         ),
       ),
       themeMode: _appThemeMode,
-      home: const SignupPageRoute(),
+      home: const LoginPageRoute(),
     );
   }
 
   Future saveSeedColor(String color) async {
     var pref = await SharedPreferences.getInstance();
     pref.setString("themeColor", color);
-    debugPrint("Color saved");
   }
 
   Future saveThemeMode(int mode) async {
     var pref = await SharedPreferences.getInstance();
     pref.setInt("themeMode", mode);
-    debugPrint("ThemeMode saved");
   }
 }

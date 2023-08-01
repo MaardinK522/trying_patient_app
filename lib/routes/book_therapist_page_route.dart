@@ -15,51 +15,52 @@ class BookTherapistPageRoute extends StatelessWidget {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: const Text("PhyzziCare"),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              TextFormField(
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.search_rounded),
-                  contentPadding: const EdgeInsets.all(10),
-                  hintText: "Search by name, ID, type",
-                  hintStyle: const TextStyle(fontStyle: FontStyle.italic),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+          titleSpacing: 5,
+          title: Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: TextFormField(
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.search_rounded),
+                contentPadding: const EdgeInsets.all(10),
+                hintText: "Search by name, ID, type",
+                hintStyle: const TextStyle(fontStyle: FontStyle.italic),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    width: 2,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      width: 2,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+                  borderRadius: BorderRadius.circular(5),
                 ),
               ),
-              const SizedBox(height: 10),
-              Expanded(
-                child: ListView.builder(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return BookTherapistRouteTherapistListViewItem(
-                      therapist: TherapistListItemModel(
-                        therapistName: Faker().person.name(),
-                        therapistID: Faker().guid.guid(),
-                        index: index,
-                        therapistImage: Assets.assetsGhandi,
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ],
+            ),
           ),
+        ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const SizedBox(height: 10),
+            Expanded(
+              child: ListView.builder(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return BookTherapistRouteTherapistListViewItem(
+                    therapist: TherapistListItemModel(
+                      therapistName: Faker().person.name(),
+                      therapistID: Faker().guid.guid(),
+                      index: index,
+                      therapistImage: Assets.assetsGhandi,
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );

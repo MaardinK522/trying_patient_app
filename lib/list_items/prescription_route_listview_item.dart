@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:phyzzicare/generated/assets.dart';
 
 class PrescriptionRouteListviewItem extends StatelessWidget {
-  final int index;
-  final AnimationController animationController;
 
-  const PrescriptionRouteListviewItem(
-      {Key? key, required this.index, required this.animationController})
+  const PrescriptionRouteListviewItem({Key? key})
       : super(key: key);
 
   String getFakeDate() {
@@ -17,86 +14,66 @@ class PrescriptionRouteListviewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double animationStart = 0.1 * index;
-    double animationEnd = animationStart + 0.4;
-    return SlideTransition(
-      position: Tween(
-        begin: const Offset(0, -1),
-        end: const Offset(0, 0),
-      ).animate(
-        CurvedAnimation(
-          parent: animationController,
-          curve: Interval(
-            animationStart,
-            animationEnd,
-            curve: Curves.ease,
-          ),
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        border: Border.all(
+          color: Theme.of(context).colorScheme.secondaryContainer,
+          width: 2,
         ),
       ),
-      child: FadeTransition(
-        opacity: animationController,
-        child: Container(
-          margin: const EdgeInsets.symmetric(vertical: 10),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            border: Border.all(
-              color: Theme.of(context).colorScheme.secondaryContainer,
-              width: 2,
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      child: Image.asset(
-                        Assets.assetsGhandi,
-                        height: 50,
-                        width: 50,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    const Expanded(
-                      child: Text(
-                        "Mahatma Ghandi",
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ],
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: Image.asset(
+                    Assets.assetsGhandi,
+                    height: 50,
+                    width: 50,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                Row(
-                  children: [
-                    const Expanded(
-                      child: Text(
-                        "Fever and cold",
-                        style: TextStyle(fontSize: 18),
-                      ),
+                const SizedBox(width: 10),
+                const Expanded(
+                  child: Text(
+                    "Mahatma Ghandi",
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
                     ),
-                    FilledButton.tonal(
-                      style: ButtonStyle(
-                        shape: MaterialStatePropertyAll(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                      ),
-                      onPressed: () {},
-                      child: const Text("Details"),
-                    ),
-                  ],
+                  ),
                 ),
               ],
             ),
-          ),
+            Row(
+              children: [
+                const Expanded(
+                  child: Text(
+                    "Fever and cold",
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ),
+                FilledButton.tonal(
+                  style: ButtonStyle(
+                    shape: MaterialStatePropertyAll(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
+                  ),
+                  onPressed: () {},
+                  child: const Text("Details"),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

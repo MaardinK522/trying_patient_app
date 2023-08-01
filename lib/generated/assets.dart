@@ -6,8 +6,6 @@ class Assets {
   static const String assetsNature = 'assets/nature.jpeg';
   static const String assetsTherapy = 'assets/therapy.png';
   static const String generatedAssets = 'lib/generated/assets.dart';
-  static const String homePageWidgetsHomePageImagePageview =
-      'lib/exclusive_widgets/home_page_widgets/home_page_image_pageview.dart';
   static const String iconsMagnifying = 'icons/magnifying.png';
   static const String iconsNotification = 'icons/notification.png';
   static const String libGeneratedAssets = 'lib/generated/assets.dart';
