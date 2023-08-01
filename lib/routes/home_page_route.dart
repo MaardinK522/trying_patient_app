@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:phyzzicare/routes/search_page_route.dart';
 import 'package:phyzzicare/transitions/custom_fade_transition.dart';
 
 import '../windows/call_history_window_route.dart';
@@ -17,7 +16,7 @@ class HomePageRoute extends StatefulWidget {
 class _HomePageRouteState extends State<HomePageRoute>
     with TickerProviderStateMixin {
   final List<String> _tabs = [
-    "CALL",
+    "CALLS",
     "HOME",
     "PRESCRIPTION",
   ];
@@ -37,18 +36,10 @@ class _HomePageRouteState extends State<HomePageRoute>
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        shadowColor: Theme.of(context).colorScheme.background,
         automaticallyImplyLeading: false,
         title: const Text("PhyzziCare", style: TextStyle(fontSize: 25)),
         actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                CustomFadeTransition(page: const SearchPageRoute()),
-              );
-            },
-            icon: const Icon(Icons.search_rounded),
-          ),
           IconButton(
             onPressed: () {
               Navigator.push(
@@ -61,6 +52,8 @@ class _HomePageRouteState extends State<HomePageRoute>
         ],
         bottom: TabBar(
           controller: _tabController,
+          indicatorWeight: 2,
+          indicatorColor: Theme.of(context).colorScheme.primaryContainer,
           tabs: _tabs
               .map<Widget>((tab) => Padding(
                     padding: const EdgeInsets.all(10),

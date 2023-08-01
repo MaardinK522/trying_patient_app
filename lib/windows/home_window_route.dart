@@ -71,6 +71,7 @@ class HomeWindowRoute extends StatelessWidget {
             },
             child: const Text("EMERGENCY CONTACT"),
           ),
+          const SizedBox(height: 10),
         ],
       ),
     );

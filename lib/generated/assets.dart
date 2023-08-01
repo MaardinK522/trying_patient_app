@@ -29,8 +29,6 @@ class Assets {
   static const String routesLoginPageRoute = 'lib/routes/login_page_route.dart';
   static const String routesMakeCallPageRoute =
       'lib/routes/make_call_page_route.dart';
-  static const String routesSearchPageRoute =
-      'lib/routes/search_page_route.dart';
   static const String routesSignUpPageRoute =
       'lib/routes/sign_up_page_route.dart';
   static const String routesTherapistDetailsPageRoute =

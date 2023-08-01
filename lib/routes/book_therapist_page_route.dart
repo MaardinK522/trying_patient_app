@@ -17,28 +17,40 @@ class BookTherapistPageRoute extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          titleSpacing: 5,
-          title: Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: TextFormField(
-              decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.search_rounded),
-                contentPadding: const EdgeInsets.all(10),
-                hintText: "Search by name, ID, type",
-                hintStyle: const TextStyle(fontStyle: FontStyle.italic),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    width: 2,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                  borderRadius: BorderRadius.circular(5),
+          title: TextFormField(
+            maxLines: 1,
+            autofocus: true,
+            textInputAction: TextInputAction.search,
+            autocorrect: true,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+            ),
+            decoration: InputDecoration(
+              isDense: true,
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(
+                  color: (Theme.of(context).colorScheme.brightness ==
+                          Brightness.dark)
+                      ? Theme.of(context).colorScheme.primary
+                      : Colors.white,
                 ),
               ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: const BorderSide(color: Colors.grey),
+              ),
+              hintStyle: const TextStyle(fontStyle: FontStyle.italic),
+              hintText: "Search IDs, names...",
             ),
           ),
+          actions: [
+            IconButton(
+              onPressed: () => Navigator.pop(context),
+              icon: const Icon(Icons.close_rounded),
+            ),
+          ],
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
