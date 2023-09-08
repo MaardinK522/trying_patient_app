@@ -10,21 +10,18 @@ class CallHistoryWindowRoute extends StatefulWidget {
 }
 
 class _CallHistoryWindowRouteState extends State<CallHistoryWindowRoute> {
-  var itemCount = 20;
+  var itemCount = 10;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Expanded(
-        child: ListView.builder(
-          itemCount: itemCount,
-          itemBuilder: (context, index) {
-            return CallHistoryListItem(
-              index: index ~/ 2,
-            );
-          },
-        ),
+    return ListView.separated(
+      physics: const BouncingScrollPhysics(),
+      itemCount: itemCount,
+      itemBuilder: (context, index) => const CallHistoryListItem(),
+      separatorBuilder: (BuildContext context, int index) => Divider(
+        height: 10,
+        thickness: 1,
+        color: Theme.of(context).colorScheme.secondaryContainer,
       ),
     );
   }

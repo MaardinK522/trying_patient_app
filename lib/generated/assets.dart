@@ -2,6 +2,8 @@
 class Assets {
   Assets._();
 
+  static const String animationsCustomFadeTransition =
+      'lib/animations/custom_fade_transition.dart';
   static const String assetsGhandi = 'assets/ghandi.jpeg';
   static const String assetsNature = 'assets/nature.jpeg';
   static const String assetsTherapy = 'assets/therapy.png';
@@ -20,8 +22,7 @@ class Assets {
       'lib/list_items/prescription_route_listview_item.dart';
   static const String listItemsSentReceiveTextListviewItem =
       'lib/list_items/sent_receive_text_listview_item.dart';
-  static const String modelsTherapistListitem =
-      'lib/models/therapist_listitem.dart';
+  static const String modelsTherapistModel = 'lib/models/therapist_model.dart';
   static const String routesBookTherapistPageRoute =
       'lib/routes/book_therapist_page_route.dart';
   static const String routesChatPageRoute = 'lib/routes/chat_page_route.dart';
@@ -29,12 +30,12 @@ class Assets {
   static const String routesLoginPageRoute = 'lib/routes/login_page_route.dart';
   static const String routesMakeCallPageRoute =
       'lib/routes/make_call_page_route.dart';
+  static const String routesPrescriptionDetails =
+      'lib/routes/prescription_details_page_route.dart';
   static const String routesSignUpPageRoute =
       'lib/routes/sign_up_page_route.dart';
   static const String routesTherapistDetailsPageRoute =
       'lib/routes/therapist_details_page_route.dart';
-  static const String transitionsCustomFadeTransition =
-      'lib/transitions/custom_fade_transition.dart';
   static const String utilsStandardVals = 'lib/utils/standard_vals.dart';
   static const String utilsThemeColor = 'lib/utils/theme_color.dart';
   static const String windowsCallHistoryWindowRoute =

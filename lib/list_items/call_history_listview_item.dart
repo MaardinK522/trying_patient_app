@@ -1,20 +1,18 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
-import 'package:phyzzicare/generated/assets.dart';
+
+import '../generated/assets.dart';
 
 class CallHistoryListItem extends StatelessWidget {
-  final int index;
-
-  const CallHistoryListItem({super.key, required this.index});
+  const CallHistoryListItem({super.key});
 
   @override
   Widget build(BuildContext context) {
     var faker = Faker();
-    return Container(
-      margin: const EdgeInsets.only(top: 10),
-      padding: const EdgeInsets.symmetric(vertical: 10),
+    return Padding(
+      padding: const EdgeInsets.all(10),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(50),
@@ -28,20 +26,22 @@ class CallHistoryListItem extends StatelessWidget {
           const SizedBox(width: 10),
           Expanded(
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   faker.person.name(),
                   style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
+                    fontSize: 15,
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),
-                const SizedBox(height: 10),
                 Text(
                   faker.date.justTime(),
-                  style: const TextStyle(fontSize: 15),
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w300,
+                  ),
                 ),
               ],
             ),

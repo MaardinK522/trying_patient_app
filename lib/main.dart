@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:phyzzicare/routes/login_page_route.dart';
+import 'package:phyzzicare/routes/home_page_route.dart';
 import 'package:phyzzicare/utils/theme_color.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -130,6 +130,8 @@ class MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    setSavedSeedColor();
+    setSavedThemeMode();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Phyzzicare',
@@ -148,7 +150,7 @@ class MyAppState extends State<MyApp> {
         ),
       ),
       themeMode: _appThemeMode,
-      home: const LoginPageRoute(),
+      home: const HomePageRoute(),
     );
   }
 

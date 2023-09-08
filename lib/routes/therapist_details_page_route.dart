@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:phyzzicare/models/therapist_model.dart';
 
 class TherapistDetailsPageRoute extends StatelessWidget {
-  final String therapistImage;
-  final String therapistName;
-  final int index;
+  final TherapistModel item;
 
-  const TherapistDetailsPageRoute(
-      {super.key,
-      required this.therapistImage,
-      required this.therapistName,
-      required this.index});
+  const TherapistDetailsPageRoute({
+    super.key,
+    required this.item,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Hero(
-          tag: "$therapistName$index",
+          tag: item.therapistName,
           child: Material(
             color: Colors.transparent,
-            child: Text(therapistName,
+            child: Text(item.therapistName,
                 style: const TextStyle(
                   color: Colors.grey,
                   fontSize: 15,
@@ -32,14 +30,14 @@ class TherapistDetailsPageRoute extends StatelessWidget {
       body: ListView(
         children: [
           Hero(
-            tag: "$therapistImage$index",
+            tag: item.therapistImage,
             child: Container(
               height: 200,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage(therapistImage),
+                  image: AssetImage(item.therapistImage),
                 ),
               ),
             ),

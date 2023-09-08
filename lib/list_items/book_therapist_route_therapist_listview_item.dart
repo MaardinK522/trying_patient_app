@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../models/therapist_listitem.dart';
+import '../models/therapist_model.dart';
 import '../routes/therapist_details_page_route.dart';
 
 class BookTherapistRouteTherapistListViewItem extends StatelessWidget {
-  final TherapistListItemModel therapist;
+  final TherapistModel therapist;
 
   const BookTherapistRouteTherapistListViewItem({
     Key? key,
@@ -19,9 +19,7 @@ class BookTherapistRouteTherapistListViewItem extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => TherapistDetailsPageRoute(
-                index: therapist.index,
-                therapistImage: therapist.therapistImage,
-                therapistName: therapist.therapistName,
+                item: therapist,
               ),
             ));
       },
@@ -30,7 +28,7 @@ class BookTherapistRouteTherapistListViewItem extends StatelessWidget {
         child: Row(
           children: [
             Hero(
-              tag: "${therapist.therapistImage}${therapist.index}",
+              tag: therapist.therapistImage,
               child: Container(
                 height: 50,
                 width: 50,
@@ -50,7 +48,7 @@ class BookTherapistRouteTherapistListViewItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Hero(
-                    tag: "${therapist.therapistName}${therapist.index}",
+                    tag: therapist.therapistName,
                     child: Material(
                       color: Colors.transparent,
                       child: Text(

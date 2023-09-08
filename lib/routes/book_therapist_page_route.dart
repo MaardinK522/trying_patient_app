@@ -1,9 +1,9 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:phyzzicare/generated/assets.dart';
-import 'package:phyzzicare/models/therapist_listitem.dart';
 
 import '../list_items/book_therapist_route_therapist_listview_item.dart';
+import '../models/therapist_model.dart';
 
 class BookTherapistPageRoute extends StatelessWidget {
   const BookTherapistPageRoute({Key? key}) : super(key: key);
@@ -62,10 +62,9 @@ class BookTherapistPageRoute extends StatelessWidget {
                 itemCount: 10,
                 itemBuilder: (context, index) {
                   return BookTherapistRouteTherapistListViewItem(
-                    therapist: TherapistListItemModel(
+                    therapist: TherapistModel(
                       therapistName: Faker().person.name(),
                       therapistID: Faker().guid.guid(),
-                      index: index,
                       therapistImage: Assets.assetsGhandi,
                     ),
                   );

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:phyzzicare/transitions/custom_fade_transition.dart';
+import 'package:phyzzicare/windows/settings_window_route.dart';
 
 import '../windows/call_history_window_route.dart';
 import '../windows/home_window_route.dart';
 import '../windows/prescription_history_window_route.dart';
-import '../windows/settings_window_route.dart';
 
 class HomePageRoute extends StatefulWidget {
   const HomePageRoute({Key? key}) : super(key: key);
@@ -13,61 +12,69 @@ class HomePageRoute extends StatefulWidget {
   State<HomePageRoute> createState() => _HomePageRouteState();
 }
 
-class _HomePageRouteState extends State<HomePageRoute>
-    with TickerProviderStateMixin {
-  final List<String> _tabs = [
-    "CALLS",
-    "HOME",
-    "PRESCRIPTION",
-  ];
-  final List<Widget> _tabWindowsWidgets = const [
-    CallHistoryWindowRoute(),
-    HomeWindowRoute(),
-    PrescriptionsHistoryWindowRoute(),
-  ];
-  late final TabController _tabController = TabController(
-    length: _tabs.length,
-    vsync: this,
+class _HomePageRouteState extends State<HomePageRoute> {
+  int bottomNavigationItemIndex = 0;
+  late final PageController mainPageController = PageController(
+    initialPage: bottomNavigationItemIndex,
+    keepPage: true,
   );
-  int bottomNavigationItemIndex = 1;
+  final List<Widget> _tabWindowsWidgets = const [
+    HomeWindowRoute(),
+    CallHistoryWindowRoute(),
+    PrescriptionsHistoryWindowRoute(),
+    SettingsWindowRoute(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        shadowColor: Theme.of(context).colorScheme.background,
-        automaticallyImplyLeading: false,
-        title: const Text("PhyzziCare", style: TextStyle(fontSize: 25)),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                CustomFadeTransition(page: const SettingsWindowRoute()),
-              );
-            },
-            icon: const Icon(Icons.settings_rounded),
+      body: PageView(
+        onPageChanged: (index) {
+          setState(() {
+            bottomNavigationItemIndex = index;
+          });
+        },
+        controller: mainPageController,
+        children: _tabWindowsWidgets,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: bottomNavigationItemIndex,
+        iconSize: 30,
+        showUnselectedLabels: false,
+        onTap: (index) {
+          setState(() {
+            bottomNavigationItemIndex = index;
+          });
+          mainPageController.animateToPage(
+            bottomNavigationItemIndex,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeInOut,
+          );
+        },
+        elevation: 10,
+        unselectedIconTheme: const IconThemeData(size: 25),
+        unselectedItemColor: Theme.of(context).colorScheme.onBackground,
+        selectedItemColor: Theme.of(context).colorScheme.secondary,
+        selectedIconTheme: const IconThemeData(size: 30),
+        items: const [
+          BottomNavigationBarItem(
+            label: "Home",
+            icon: Icon(Icons.home_rounded),
+          ),
+          BottomNavigationBarItem(
+            label: "Call",
+            icon: Icon(Icons.call_rounded),
+          ),
+          BottomNavigationBarItem(
+            label: "Medication",
+            icon: Icon(Icons.medication_rounded),
+          ),
+          BottomNavigationBarItem(
+            label: "Setting",
+            icon: Icon(Icons.settings_rounded),
           ),
         ],
-        bottom: TabBar(
-          controller: _tabController,
-          indicatorWeight: 2,
-          indicatorColor: Theme.of(context).colorScheme.primaryContainer,
-          tabs: _tabs
-              .map<Widget>((tab) => Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Text(
-                      tab,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ))
-              .toList(),
-        ),
-      ),
-      body: TabBarView(
-        controller: _tabController,
-        children: _tabWindowsWidgets,
       ),
     );
   }

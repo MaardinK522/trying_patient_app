@@ -13,11 +13,20 @@ class HomeWindowRoute extends StatelessWidget {
       padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
       child: Column(
         children: [
+          SizedBox(height: MediaQuery.of(context).padding.top),
           const SizedBox(height: 10),
+          const SizedBox(
+            child: Card(
+              child: SizedBox(
+                height: 200,
+              ),
+            ),
+          ),
           const Expanded(child: Center()),
           SizedBox(
             height: 125,
             child: Card(
+              elevation: 5,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5),
               ),
@@ -60,6 +69,7 @@ class HomeWindowRoute extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           SwipeButton.expand(
+            elevationTrack: 5,
             borderRadius: BorderRadius.circular(5),
             activeThumbColor: Theme.of(context).colorScheme.errorContainer,
             activeTrackColor: Theme.of(context).colorScheme.background,

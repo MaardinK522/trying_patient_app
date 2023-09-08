@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:phyzzicare/generated/assets.dart';
 import 'package:phyzzicare/routes/login_page_route.dart';
-import 'package:phyzzicare/transitions/custom_fade_transition.dart';
 
 import '../../main.dart';
 import '../../utils/theme_color.dart';
+import '../animations/custom_fade_transition.dart';
 
 class SettingsWindowRoute extends StatefulWidget {
   const SettingsWindowRoute({super.key});
@@ -36,13 +36,70 @@ class _SettingsWindowRouteState extends State<SettingsWindowRoute> {
     super.initState();
   }
 
+  bool isAppBarExpanded = false;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("PhyzziCare"),
-        titleSpacing: 0,
+    var appBar = AppBar(
+      elevation: 0,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(20),
+          bottomRight: Radius.circular(20),
+        ),
       ),
+      centerTitle: true,
+      title: const Text("PhyzziCare"),
+      actions: [
+        IconButton(
+          onPressed: () {
+            setState(() {
+              isAppBarExpanded = !isAppBarExpanded;
+            });
+          },
+          icon: Icon(
+            (isAppBarExpanded)
+                ? Icons.keyboard_arrow_up_rounded
+                : Icons.keyboard_arrow_down_rounded,
+          ),
+        ),
+      ],
+    );
+    return Scaffold(
+      appBar: (isAppBarExpanded)
+          ? PreferredSize(
+              preferredSize: const Size.fromHeight(300),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Container(
+                      color: (Theme.of(context).brightness == Brightness.light)
+                          ? Theme.of(context).colorScheme.primary
+                          : Theme.of(context).colorScheme.background,
+                      child: Column(
+                        children: [
+                          SizedBox(height: MediaQuery.of(context).padding.top),
+                          const Expanded(
+                            child: Center(
+                              child: Text(
+                                "Our motive is to maximize stroke recovery.",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 25,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  appBar,
+                ],
+              ),
+            )
+          : appBar,
       body: Column(
         children: [
           Expanded(
@@ -215,30 +272,34 @@ class _SettingsWindowRouteState extends State<SettingsWindowRoute> {
                                           colorItem.isSelected = true;
                                         });
                                       },
-                                      child: Container(
-                                        width: 50,
-                                        height: 50,
-                                        decoration: BoxDecoration(
-                                          color: colorItem.color,
-                                          borderRadius:
-                                              BorderRadius.circular(500),
-                                          border: Border.all(
-                                            color:
-                                                (Theme.of(context).brightness ==
-                                                        Brightness.dark)
-                                                    ? Colors.white
-                                                    : Colors.black,
-                                            width:
-                                                (colorItem.isSelected) ? 3 : 0,
+                                      child: Expanded(
+                                        child: Container(
+                                          width: 50,
+                                          height: 50,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            color: colorItem.color,
+                                            border: Border.all(
+                                              color: (Theme.of(context)
+                                                          .brightness ==
+                                                      Brightness.dark)
+                                                  ? Colors.white
+                                                  : Colors.black,
+                                              width: (colorItem.isSelected)
+                                                  ? 3
+                                                  : 0,
+                                            ),
                                           ),
+                                          child: (colorItem.isSelected)
+                                              ? const SizedBox(
+                                                  height: 20,
+                                                  width: 20,
+                                                  child:
+                                                      Icon(Icons.done_rounded),
+                                                )
+                                              : const Center(),
                                         ),
-                                        child: (colorItem.isSelected)
-                                            ? const SizedBox(
-                                                height: 20,
-                                                width: 20,
-                                                child: Icon(Icons.done_rounded),
-                                              )
-                                            : const Center(),
                                       ),
                                     ),
                                   )
@@ -267,7 +328,9 @@ class _SettingsWindowRouteState extends State<SettingsWindowRoute> {
               onTap: () {
                 Navigator.pushReplacement(
                   context,
-                  CustomFadeTransition(page: const LoginPageRoute()),
+                  CustomFadeTransition(
+                    page: const LoginPageRoute(),
+                  ),
                 );
               },
             ),
