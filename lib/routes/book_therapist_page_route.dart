@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:phyzzicare/generated/assets.dart';
@@ -5,8 +7,15 @@ import 'package:phyzzicare/generated/assets.dart';
 import '../list_items/book_therapist_route_therapist_listview_item.dart';
 import '../models/therapist_model.dart';
 
-class BookTherapistPageRoute extends StatelessWidget {
+class BookTherapistPageRoute extends StatefulWidget {
   const BookTherapistPageRoute({Key? key}) : super(key: key);
+
+  @override
+  State<BookTherapistPageRoute> createState() => _BookTherapistPageRouteState();
+}
+
+class _BookTherapistPageRouteState extends State<BookTherapistPageRoute> {
+  final TextEditingController searchFieldController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +27,7 @@ class BookTherapistPageRoute extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: TextFormField(
+            controller: searchFieldController,
             maxLines: 1,
             autofocus: true,
             textInputAction: TextInputAction.search,
@@ -47,7 +57,7 @@ class BookTherapistPageRoute extends StatelessWidget {
           ),
           actions: [
             IconButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => searchFieldController.clear(),
               icon: const Icon(Icons.close_rounded),
             ),
           ],
@@ -57,7 +67,7 @@ class BookTherapistPageRoute extends StatelessWidget {
           children: [
             const SizedBox(height: 10),
             Expanded(
-              child: ListView.builder(
+              child: ListView.separated(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 itemCount: 10,
                 itemBuilder: (context, index) {
@@ -67,8 +77,12 @@ class BookTherapistPageRoute extends StatelessWidget {
                       therapistID: Faker().guid.guid(),
                       therapistImage: Assets.assetsGhandi,
                     ),
+                    rating: Random().nextInt(5),
                   );
                 },
+                separatorBuilder: (BuildContext context, int index) => Divider(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
               ),
             ),
           ],

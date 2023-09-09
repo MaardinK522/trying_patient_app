@@ -107,6 +107,7 @@ class _SettingsWindowRouteState extends State<SettingsWindowRoute> {
               padding: const EdgeInsets.all(10.0),
               child: SingleChildScrollView(
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     const SizedBox(width: 10),
@@ -129,45 +130,43 @@ class _SettingsWindowRouteState extends State<SettingsWindowRoute> {
                           ),
                         ),
                         const SizedBox(width: 10),
-                        Flexible(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Mahatma Ghandi",
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(fontSize: 20),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Mahatma Ghandi",
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                Text("Patient"),
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            OutlinedButton(
+                              style: ButtonStyle(
+                                shape: MaterialStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5),
                                   ),
-                                  Text("Patient"),
+                                ),
+                              ),
+                              onPressed: () {},
+                              child: const Row(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.edit_note_rounded),
+                                  SizedBox(width: 5),
+                                  Text("Edit Profile"),
                                 ],
                               ),
-                              const SizedBox(height: 10),
-                              OutlinedButton(
-                                style: ButtonStyle(
-                                  shape: MaterialStatePropertyAll(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                  ),
-                                ),
-                                onPressed: () {},
-                                child: const Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(Icons.edit_note_rounded),
-                                    SizedBox(width: 5),
-                                    Text("Edit Profile"),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
+                            )
+                          ],
                         ),
                       ],
                     ),
@@ -202,114 +201,102 @@ class _SettingsWindowRouteState extends State<SettingsWindowRoute> {
                       shape: listTileRoundness,
                       title: const Text("Themes"),
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            ListTile(
-                              title: const Text(
-                                "Light",
-                              ),
-                              trailing: Radio<String>(
-                                value: "Light",
-                                groupValue: _selected,
-                                onChanged: (value) {
-                                  setState(() {
-                                    _selected = value!;
-                                  });
-                                  MyApp.of(context)
-                                      ?.changeThemeMode(ThemeMode.light);
-                                },
-                              ),
-                            ),
-                            ListTile(
-                              titleAlignment: ListTileTitleAlignment.center,
-                              title: const Text(
-                                "Dark",
-                              ),
-                              trailing: Radio<String>(
-                                value: "Dark",
-                                groupValue: _selected,
-                                onChanged: (value) {
-                                  setState(() {
-                                    _selected = value!;
-                                  });
-                                  MyApp.of(context)
-                                      ?.changeThemeMode(ThemeMode.dark);
-                                },
-                              ),
-                            ),
-                            ListTile(
-                              titleAlignment: ListTileTitleAlignment.center,
-                              title: const Text(
-                                "System",
-                              ),
-                              trailing: Radio<String>(
-                                value: "System",
-                                groupValue: _selected,
-                                onChanged: (value) {
-                                  setState(() {
-                                    _selected = value!;
-                                  });
-                                  MyApp.of(context)
-                                      ?.changeThemeMode(ThemeMode.system);
-                                },
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: themeColors
-                                  .map<Widget>(
-                                    (colorItem) => InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          MyApp.of(context)
-                                              ?.changeAppColorTheme(
-                                                  colorItem.color);
-                                          for (var element in themeColors) {
-                                            element.isSelected = false;
-                                          }
-                                          colorItem.isSelected = true;
-                                        });
-                                      },
-                                      child: Expanded(
-                                        child: Container(
-                                          width: 50,
-                                          height: 50,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            color: colorItem.color,
-                                            border: Border.all(
-                                              color: (Theme.of(context)
-                                                          .brightness ==
-                                                      Brightness.dark)
-                                                  ? Colors.white
-                                                  : Colors.black,
-                                              width: (colorItem.isSelected)
-                                                  ? 3
-                                                  : 0,
-                                            ),
-                                          ),
-                                          child: (colorItem.isSelected)
-                                              ? const SizedBox(
-                                                  height: 20,
-                                                  width: 20,
-                                                  child:
-                                                      Icon(Icons.done_rounded),
-                                                )
-                                              : const Center(),
-                                        ),
+                        ListTile(
+                          title: const Text(
+                            "Light",
+                          ),
+                          trailing: Radio<String>(
+                            value: "Light",
+                            groupValue: _selected,
+                            onChanged: (value) {
+                              setState(() {
+                                _selected = value!;
+                              });
+                              MyApp.of(context)
+                                  ?.changeThemeMode(ThemeMode.light);
+                            },
+                          ),
+                        ),
+                        ListTile(
+                          titleAlignment: ListTileTitleAlignment.center,
+                          title: const Text(
+                            "Dark",
+                          ),
+                          trailing: Radio<String>(
+                            value: "Dark",
+                            groupValue: _selected,
+                            onChanged: (value) {
+                              setState(() {
+                                _selected = value!;
+                              });
+                              MyApp.of(context)
+                                  ?.changeThemeMode(ThemeMode.dark);
+                            },
+                          ),
+                        ),
+                        ListTile(
+                          titleAlignment: ListTileTitleAlignment.center,
+                          title: const Text(
+                            "System",
+                          ),
+                          trailing: Radio<String>(
+                            value: "System",
+                            groupValue: _selected,
+                            onChanged: (value) {
+                              setState(() {
+                                _selected = value!;
+                              });
+                              MyApp.of(context)
+                                  ?.changeThemeMode(ThemeMode.system);
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: themeColors
+                              .map<Widget>(
+                                (colorItem) => InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      MyApp.of(context)?.changeAppColorTheme(
+                                          colorItem.color);
+                                      for (var element in themeColors) {
+                                        element.isSelected = false;
+                                      }
+                                      colorItem.isSelected = true;
+                                    });
+                                  },
+                                  child: Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(100),
+                                      color: colorItem.color,
+                                      border: Border.all(
+                                        color: (Theme.of(context).brightness ==
+                                                Brightness.dark)
+                                            ? Colors.white
+                                            : Colors.black,
+                                        width: (colorItem.isSelected) ? 3 : 0,
                                       ),
                                     ),
-                                  )
-                                  .toList(),
-                            ),
-                            const SizedBox(height: 10),
-                          ],
-                        )
+                                    child: (colorItem.isSelected)
+                                        ? const SizedBox(
+                                            height: 20,
+                                            width: 20,
+                                            child: Icon(Icons.done_rounded),
+                                          )
+                                        : const Center(),
+                                  ),
+                                ),
+                              )
+                              .toList(),
+                        ),
+                        const SizedBox(height: 10),
                       ],
                     ),
+                    const SizedBox(height: 10),
                     ListTile(
                       shape: listTileRoundness,
                       onTap: () {},

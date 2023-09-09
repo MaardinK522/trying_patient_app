@@ -30,7 +30,7 @@ class TherapistDetailsPageRoute extends StatelessWidget {
       body: ListView(
         children: [
           Hero(
-            tag: item.therapistImage,
+            tag: "${item.therapistImage}${item.therapistID}",
             child: Container(
               height: 200,
               decoration: BoxDecoration(

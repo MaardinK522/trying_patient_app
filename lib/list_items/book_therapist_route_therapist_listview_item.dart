@@ -5,10 +5,12 @@ import '../routes/therapist_details_page_route.dart';
 
 class BookTherapistRouteTherapistListViewItem extends StatelessWidget {
   final TherapistModel therapist;
+  final int rating;
 
   const BookTherapistRouteTherapistListViewItem({
     Key? key,
     required this.therapist,
+    required this.rating,
   }) : super(key: key);
 
   @override
@@ -16,19 +18,20 @@ class BookTherapistRouteTherapistListViewItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => TherapistDetailsPageRoute(
-                item: therapist,
-              ),
-            ));
+          context,
+          MaterialPageRoute(
+            builder: (context) => TherapistDetailsPageRoute(
+              item: therapist,
+            ),
+          ),
+        );
       },
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Row(
           children: [
             Hero(
-              tag: therapist.therapistImage,
+              tag: "${therapist.therapistImage}${therapist.therapistID}",
               child: Container(
                 height: 50,
                 width: 50,
@@ -56,7 +59,7 @@ class BookTherapistRouteTherapistListViewItem extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                           fontSize: 20,
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w500,
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
@@ -72,7 +75,7 @@ class BookTherapistRouteTherapistListViewItem extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

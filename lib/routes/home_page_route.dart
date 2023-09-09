@@ -13,14 +13,14 @@ class HomePageRoute extends StatefulWidget {
 }
 
 class _HomePageRouteState extends State<HomePageRoute> {
-  int bottomNavigationItemIndex = 0;
+  int bottomNavigationItemIndex = 1;
   late final PageController mainPageController = PageController(
     initialPage: bottomNavigationItemIndex,
     keepPage: true,
   );
   final List<Widget> _tabWindowsWidgets = const [
-    HomeWindowRoute(),
     CallHistoryWindowRoute(),
+    HomeWindowRoute(),
     PrescriptionsHistoryWindowRoute(),
     SettingsWindowRoute(),
   ];
@@ -59,12 +59,12 @@ class _HomePageRouteState extends State<HomePageRoute> {
         selectedIconTheme: const IconThemeData(size: 30),
         items: const [
           BottomNavigationBarItem(
-            label: "Home",
-            icon: Icon(Icons.home_rounded),
-          ),
-          BottomNavigationBarItem(
             label: "Call",
             icon: Icon(Icons.call_rounded),
+          ),
+          BottomNavigationBarItem(
+            label: "Home",
+            icon: Icon(Icons.home_rounded),
           ),
           BottomNavigationBarItem(
             label: "Medication",
